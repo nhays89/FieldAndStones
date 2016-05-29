@@ -1,6 +1,8 @@
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+/**
+ * 
+ * @author Nicholas A. Hays
+ */
+
 
 public class challenge {
 	private static int fieldSize;
@@ -73,7 +75,7 @@ public class challenge {
 							if (n - x > m - y) {
 								maxSize = n - x;
 							} else if (n - x < m - y) {
-								largestSquare[m][n] = m - y;
+								largestSquare[m][n] = n - x;
 								break outer;
 							} else {
 								largestSquare[m][n] = m - y;
