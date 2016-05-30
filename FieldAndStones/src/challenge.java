@@ -3,9 +3,9 @@
  * @author Nicholas A. Hays
  */
 
-
 public class challenge {
 	private static int fieldSize;
+	private static int[][] largestSquare;
 
 	/**
 	 * Parses the input from the cmd line to create a boolean matrix
@@ -18,15 +18,25 @@ public class challenge {
 	public static void main(String[] args) {
 
 		fieldSize = Integer.parseInt(args[0]);
+		System.out.println("arg 0 = " + args[0]);
 		int numOfStones = Integer.parseInt(args[1]);
+		System.out.println("arg 1 = " + args[1]);
 		int[][] field = new int[fieldSize][fieldSize];
 		for (int i = 2; i <= numOfStones * 2; i += 2) {
 			int x = Integer.parseInt(args[i]);
+			System.out.println("arg " + i + " = " + x);
 			int y = Integer.parseInt(args[i + 1]);
+			System.out.println("arg " + (i + 1) + " = " + y);
 			field[x][y] = 1;
 		}
-		int[][] maxSquare = new int[fieldSize][fieldSize];
+		largestSquare = new int[fieldSize][fieldSize];
 		findLargestSquare(field);
+		for (int i = 0; i < largestSquare.length; i++) {
+			for (int j = 0; j < largestSquare[i].length; j++) {
+				System.out.print(largestSquare[i][j] + " ");
+			}
+			System.out.println();
+		}
 
 	}
 
@@ -61,35 +71,31 @@ public class challenge {
 	 *            the boolean matrix representing the stones on the field.
 	 */
 	public static void findLargestSquare(int[][] theField) {
-		int[][] largestSquare = new int[fieldSize][fieldSize];
 		for (int y = 0; y < theField.length; y++) {
 			for (int x = 0; x < theField[y].length; x++) {
 				int maxWidth = fieldSize - x;
 				int maxHeight = fieldSize - y;
+				int m = 0, n = 0;
 				int maxSize = maxWidth < maxHeight ? maxWidth : maxHeight;
-				outer:
-				for (int m = y; m < y + maxSize; m++) {
-					int n;
+				outer: for (m = y; m < y + maxSize; m++) {
 					for (n = x; n < x + maxSize; n++) {
 						if (theField[m][n] == 1) {
 							if (n - x > m - y) {
 								maxSize = n - x;
 							} else if (n - x < m - y) {
-								largestSquare[m][n] = n - x;
+								largestSquare[y][x] = m - y;
 								break outer;
 							} else {
-								largestSquare[m][n] = m - y;
+								largestSquare[y][x] = m - y;
 								break outer;
 							}
 						}
 					}
-					if (n == n + maxSize ) {
-						largestSquare[m][n] = maxWidth;
-					}
+				}
+				if (m - y == maxSize) {
+					largestSquare[y][x] = maxSize;
 				}
 			}
-
 		}
-
 	}
 }
