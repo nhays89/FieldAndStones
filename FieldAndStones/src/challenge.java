@@ -1,76 +1,65 @@
 /**
- * 
+ * public repository: 'www.github.com/nhays89/challenge/
  * @author Nicholas A. Hays
  */
 
 public class challenge {
-	private static int fieldSize;
-	private static int[][] largestSquare;
 
 	/**
-	 * Parses the input from the cmd line to create a boolean matrix
-	 * representing the field and its stones at coordinates (x,y). Format: 1st
-	 * arg: field size (the length of the field) 2nd arg: number of stones in
-	 * the field. 3rd arg: coordinates of each stone on the field XY. sample
-	 * call from cmd line: java challenge 8 4 1 2 2 6 4 5 7 3
-	 * 
+	 * Check out 'www.github.com/nhays89/challenge/' readme for details.  
 	 */
 	public static void main(String[] args) {
-
-		fieldSize = Integer.parseInt(args[0]);
-		System.out.println("arg 0 = " + args[0]);
+		int fieldSize = Integer.parseInt(args[0]);
 		int numOfStones = Integer.parseInt(args[1]);
-		System.out.println("arg 1 = " + args[1]);
 		int[][] field = new int[fieldSize][fieldSize];
 		for (int i = 2; i <= numOfStones * 2; i += 2) {
 			int x = Integer.parseInt(args[i]);
-			System.out.println("arg " + i + " = " + x);
 			int y = Integer.parseInt(args[i + 1]);
-			System.out.println("arg " + (i + 1) + " = " + y);
 			field[x][y] = 1;
 		}
-		largestSquare = new int[fieldSize][fieldSize];
-		findLargestSquare(field);
-		for (int i = 0; i < largestSquare.length; i++) {
-			for (int j = 0; j < largestSquare[i].length; j++) {
-				System.out.print(largestSquare[i][j] + " ");
-			}
-			System.out.println();
+		int[] sampleTarget = new int[2];
+		sampleTarget[0] = 6;
+		sampleTarget[1] = 6;
+		System.out.println(determineTarget(field, sampleTarget, 3));
+		int[][] fieldSquares = analyzeField(field);
+		printLargestSquare(fieldSquares);
+
+	}
+
+	/**
+	 * Given a target coordinate, square size, and 
+	 * 
+	 * @param theField
+	 *            the boolean matrix representing the stones on the field.
+	 */
+	public static boolean determineTarget(int[][] theField, int[] target, int size) {
+		int x = target[0];
+		int y = target[1];
+		if(x + size > theField.length || y + size > theField[0].length) {
+			return false;
 		}
-
-	}
-
-	public static void parseInput(StringBuilder sb) {
-		int fieldLength = sb.charAt(0);
-		System.out.println(fieldLength);
-		// for(int i = 0; i < )
-
-	}
-
-	/**
-	 * Given a target coordinate, determines the largest possible square not
-	 * containing any stones within its boundary that can be mapped on the board
-	 * using the target coordinate.
-	 * 
-	 * 
-	 * @param theField
-	 *            the boolean matrix representing the stones on the field.
-	 */
-	public static void findTargetSquare(int[][] theField) {
-
+		for(int m = x; m < x + size; m++) {
+			for (int n = y; n < y + size; n++) {
+				if(theField[m][n] == 1) {
+					return false;
+				}
+			}
+		}	
+		return true;
 	}
 
 	/**
-	 * Given a boolean matrix representing the field, this method will print the
-	 * position (upper left corner) of the coordinate that can generate the
-	 * largest possible square not containing any stones within its boundary,
-	 * and the square size.
-	 * 
+	 * Given a boolean matrix representing the field, for each coordinate on the field
+	 * this method will find the largest possible square not containing any stones 
+	 * within its boundary. 
 	 * 
 	 * @param theField
 	 *            the boolean matrix representing the stones on the field.
+	 * @return the array representing the largest possible square at each coordinate.
 	 */
-	public static void findLargestSquare(int[][] theField) {
+	public static int[][] analyzeField(int[][] theField) {
+		int fieldSize = theField.length;
+		int[][] largestSquare = new int[fieldSize][fieldSize];
 		for (int y = 0; y < theField.length; y++) {
 			for (int x = 0; x < theField[y].length; x++) {
 				int maxWidth = fieldSize - x;
@@ -97,5 +86,31 @@ public class challenge {
 				}
 			}
 		}
+		return largestSquare;
 	}
+	
+	/**
+	 * Prints largest possible square size in the 2d array. 
+	 * @param theSquares the 
+	 */
+	public static void printLargestSquare(int[][] theSquares) {
+		int max = 0, maxX = 0, maxY = 0;
+		for(int i = 0; i < theSquares.length; i++) {
+			for(int j = 0; j < theSquares[i].length; j++) {
+				if(theSquares[i][j] > max) {
+					max = theSquares[i][j];
+					maxX = j;
+					maxY = i;
+				}
+			}
+		}
+		System.out.print("Max Square Size: " + max + "\n" + "x coord: " + maxX + "\n" + "y coord: " + maxY);
+	}
+	
+	
+	
+	
+	
+	
+	
 }
