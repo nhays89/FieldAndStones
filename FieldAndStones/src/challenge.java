@@ -18,13 +18,12 @@ public class challenge {
 			int y = Integer.parseInt(args[i + 1]);
 			field[x][y] = 1;
 		}
-		int[] sampleTarget = new int[2];
+	/*	int[] sampleTarget = new int[2];
 		sampleTarget[0] = 6;
 		sampleTarget[1] = 6;
-		System.out.println(determineTarget(field, sampleTarget, 3));
+		determineTarget(field, sampleTarget, 3);*/
 		int[][] fieldSquares = analyzeField(field);
 		printLargestSquare(fieldSquares);
-
 		bruteForce(field);
 	}
 
@@ -114,7 +113,7 @@ public class challenge {
                 }
             }
         }
-        System.out.println("Brute Force Max: " + max + " X: " + bestX + " Y: " + bestY );
+        System.out.println("Brute Force Max: " + max + "\nx coord: " + bestX + "\ny coord: " + bestY );
     }
 	
 	/**
@@ -132,6 +131,6 @@ public class challenge {
 				}
 			}
 		}
-		System.out.print("Max Square Size: " + max + "\n" + "x coord: " + maxX + "\n" + "y coord: " + maxY);
+		System.out.println("Max Square Size: " + max + "\n" + "x coord: " + maxX + "\n" + "y coord: " + maxY);
 	}
 }
