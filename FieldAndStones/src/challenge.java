@@ -1,6 +1,7 @@
 /**
  * public repository: 'www.github.com/nhays89/challenge/
  * @author Nicholas A. Hays
+ * @author Ethan Rowell - Brute Force method
  */
 
 public class challenge {
@@ -24,6 +25,7 @@ public class challenge {
 		int[][] fieldSquares = analyzeField(field);
 		printLargestSquare(fieldSquares);
 
+		bruteForce(field);
 	}
 
 	/**
@@ -88,6 +90,32 @@ public class challenge {
 		}
 		return largestSquare;
 	}
+
+	/**
+	*  Iterates over the entire field to check the largest size for each location 
+	*  and saving the size and coordinates.
+	*
+	* @param field the field of stones data.
+	*/
+	private static void bruteForce(int[][] field) {
+        int max = 0, bestX = 0, bestY = 0;
+
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[0].length; j++) {
+                int size = 1;
+                while(determineTarget(field, new int[] { j, i }, size)) {
+                    size++;
+                }
+                //bring size down 1
+                if (size - 1 > max) {
+                    max = size - 1;
+                    bestX = j;
+                    bestY = i;
+                }
+            }
+        }
+        System.out.println("Brute Force Max: " + max + " X: " + bestX + " Y: " + bestY );
+    }
 	
 	/**
 	 * Prints largest possible square size in the 2d array. 
@@ -106,11 +134,4 @@ public class challenge {
 		}
 		System.out.print("Max Square Size: " + max + "\n" + "x coord: " + maxX + "\n" + "y coord: " + maxY);
 	}
-	
-	
-	
-	
-	
-	
-	
 }
