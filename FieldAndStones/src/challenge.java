@@ -1,5 +1,6 @@
 /**
  * public repository: 'www.github.com/nhays89/challenge/
+ * 
  * @author Nicholas A. Hays
  * @author Ethan Rowell - Brute Force method
  */
@@ -7,7 +8,7 @@
 public class challenge {
 
 	/**
-	 * Check out 'www.github.com/nhays89/challenge/' readme for details.  
+	 * Check out 'www.github.com/nhays89/challenge/' readme for details.
 	 */
 	public static void main(String[] args) {
 		int fieldSize = Integer.parseInt(args[0]);
@@ -18,17 +19,24 @@ public class challenge {
 			int y = Integer.parseInt(args[i + 1]);
 			field[x][y] = 1;
 		}
-	/*	int[] sampleTarget = new int[2];
-		sampleTarget[0] = 6;
-		sampleTarget[1] = 6;
-		determineTarget(field, sampleTarget, 3);*/
+		/*
+		 * int[] sampleTarget = new int[2]; sampleTarget[0] = 6; sampleTarget[1]
+		 * = 6; determineTarget(field, sampleTarget, 3);
+		 */
+
+		long startTime = System.currentTimeMillis();
 		int[][] fieldSquares = analyzeField(field);
+		long endTime = System.currentTimeMillis();
+		long elapsedTime = endTime - startTime;
+
+		System.out.println(elapsedTime);
 		printLargestSquare(fieldSquares);
-		bruteForce(field);
+
+		// bruteForce(field);
 	}
 
 	/**
-	 * Given a target coordinate, square size, and 
+	 * Given a target coordinate, square size, and
 	 * 
 	 * @param theField
 	 *            the boolean matrix representing the stones on the field.
@@ -36,27 +44,28 @@ public class challenge {
 	public static boolean determineTarget(int[][] theField, int[] target, int size) {
 		int x = target[0];
 		int y = target[1];
-		if(x + size > theField.length || y + size > theField[0].length) {
+		if (x + size > theField.length || y + size > theField[0].length) {
 			return false;
 		}
-		for(int m = x; m < x + size; m++) {
+		for (int m = x; m < x + size; m++) {
 			for (int n = y; n < y + size; n++) {
-				if(theField[m][n] == 1) {
+				if (theField[m][n] == 1) {
 					return false;
 				}
 			}
-		}	
+		}
 		return true;
 	}
 
 	/**
-	 * Given a boolean matrix representing the field, for each coordinate on the field
-	 * this method will find the largest possible square not containing any stones 
-	 * within its boundary. 
+	 * Given a boolean matrix representing the field, for each coordinate on the
+	 * field this method will find the largest possible square not containing
+	 * any stones within its boundary.
 	 * 
 	 * @param theField
 	 *            the boolean matrix representing the stones on the field.
-	 * @return the array representing the largest possible square at each coordinate.
+	 * @return the array representing the largest possible square at each
+	 *         coordinate.
 	 */
 	public static int[][] analyzeField(int[][] theField) {
 		int fieldSize = theField.length;
@@ -72,9 +81,6 @@ public class challenge {
 						if (theField[m][n] == 1) {
 							if (n - x > m - y) {
 								maxSize = n - x;
-							} else if (n - x < m - y) {
-								largestSquare[y][x] = m - y;
-								break outer;
 							} else {
 								largestSquare[y][x] = m - y;
 								break outer;
@@ -91,40 +97,43 @@ public class challenge {
 	}
 
 	/**
-	*  Iterates over the entire field to check the largest size for each location 
-	*  and saving the size and coordinates.
-	*
-	* @param field the field of stones data.
-	*/
+	 * Iterates over the entire field to check the largest size for each
+	 * location and saving the size and coordinates.
+	 *
+	 * @param field
+	 *            the field of stones data.
+	 */
 	private static void bruteForce(int[][] field) {
-        int max = 0, bestX = 0, bestY = 0;
+		int max = 0, bestX = 0, bestY = 0;
 
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) {
-                int size = 1;
-                while(determineTarget(field, new int[] { j, i }, size)) {
-                    size++;
-                }
-                //bring size down 1
-                if (size - 1 > max) {
-                    max = size - 1;
-                    bestX = j;
-                    bestY = i;
-                }
-            }
-        }
-        System.out.println("Brute Force Max: " + max + "\nx coord: " + bestX + "\ny coord: " + bestY );
-    }
-	
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[0].length; j++) {
+				int size = 1;
+				while (determineTarget(field, new int[] { j, i }, size)) {
+					size++;
+				}
+				// bring size down 1
+				if (size - 1 > max) {
+					max = size - 1;
+					bestX = j;
+					bestY = i;
+				}
+			}
+		}
+		System.out.println("Brute Force Max: " + max + "\nx coord: " + bestX + "\ny coord: " + bestY);
+	}
+
 	/**
-	 * Prints largest possible square size in the 2d array. 
-	 * @param theSquares the 
+	 * Prints largest possible square size in the 2d array.
+	 * 
+	 * @param theSquares
+	 *            the
 	 */
 	public static void printLargestSquare(int[][] theSquares) {
 		int max = 0, maxX = 0, maxY = 0;
-		for(int i = 0; i < theSquares.length; i++) {
-			for(int j = 0; j < theSquares[i].length; j++) {
-				if(theSquares[i][j] > max) {
+		for (int i = 0; i < theSquares.length; i++) {
+			for (int j = 0; j < theSquares[i].length; j++) {
+				if (theSquares[i][j] > max) {
 					max = theSquares[i][j];
 					maxX = j;
 					maxY = i;
