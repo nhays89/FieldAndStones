@@ -1,5 +1,5 @@
 # FieldAndStones
-Consider a square field of size n x n where some positions are occupied by stones. See the [example](ex) below. Here, the occupied positions are (1, 2), (2, 6), (4, 5), and (7, 3). The task is to find the position (i.e. the coordinates of the top left corner) and the size of the largest square that can be drawn on that field containing no stones. In the example, the solution would be a square whose top left corner is at (2,0) and whose size is 5.
+Consider a square field of size n x n where some positions are occupied by stones. See the [example](#Example) below. Here, the occupied positions are (1, 2), (2, 6), (4, 5), and (7, 3). The task is to find the position (i.e. the coordinates of the top left corner) and the size of the largest square that can be drawn on that field containing no stones. In the example, the solution would be a square whose top left corner is at (2,0) and whose size is 5.
 ##Example 
 <img name="ex" src="https://github.com/nhays89/FieldAndStones/blob/master/FieldAndStones/img/field_stones_ex1.png"/>
 
