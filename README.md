@@ -87,6 +87,8 @@ End for
 ```
 ##<a name="dp" href="https://www.codechef.com/wiki/tutorial-dynamic-programming">Dynamic Programming</a>
 
+<em>to be continued...</em>
+
 ##Example 
 <img name="ex" src="https://github.com/nhays89/FieldAndStones/blob/master/FieldAndStones/img/field_stones_ex1.png"/>
 
