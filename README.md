@@ -3,7 +3,7 @@ Consider a square field of size n x n where some positions are occupied by stone
 
 ##Approaches to Solving Field and Stones
 * [Hybrid](#hybrid)
-* [Brute Force](-#brute force)
+* [Brute Force](#bruteforce)
 * [Dynamic Programming](Dynamic Programming)
 * 
 
@@ -61,7 +61,7 @@ End for
 	}
 ```
 
-##<a href="https://www.google.com/search?q=Brute+Force&oq=Brute+Force&aqs=chrome..69i57j0l5.1598j0j7&sourceid=chrome&ie=UTF-8#q=Brute+Force+definition+computer+science">Brute Force</a>
+##<a href="https://www.google.com/search?q=Brute+Force&oq=Brute+Force&aqs=chrome..69i57j0l5.1598j0j7&sourceid=chrome&ie=UTF-8#q=Brute+Force+definition+computer+science">BruteForce</a>
 
 
 <ul><li>Iterates over the entire field to check the largest size for each location and saving the size and coordinates.</li></ul>
