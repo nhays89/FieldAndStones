@@ -1,36 +1,11 @@
 # FieldAndStones
-Consider a square field of size n x n where some positions are occupied by stones. See the [example](#Example) below. Here, the occupied positions are (1, 2), (2, 6), (4, 5), and (7, 3). The task is to find the position (i.e. the coordinates of the top left corner) and the size of the largest square that can be drawn on that field containing no stones. In the example, the solution would be a square whose top left corner is at (2,0) and whose size is 5.
+Consider a square field of size n x n where some positions are occupied by stones. See the [example](#example) below. Here, the occupied positions are (1, 2), (2, 6), (4, 5), and (7, 3). The task is to find the position (i.e. the coordinates of the top left corner) and the size of the largest square that can be drawn on that field containing no stones. In the example, the solution would be a square whose top left corner is at (2,0) and whose size is 5.
 
 ##Approaches to Solving Field and Stones
-* [Hybrid](Hybrid)
+* [Hybrid](#hybrid)
 * [Brute Force](Brute Force)
 * [Dynamic Programming](Dynamic Programming)
-
-##<a href="https://www.google.com/search?q=Brute+Force&oq=Brute+Force&aqs=chrome..69i57j0l5.1598j0j7&sourceid=chrome&ie=UTF-8#q=Brute+Force+definition+computer+science">Brute Force</a>
-
-
-<ul><li>Iterates over the entire field to check the largest size for each location and saving the size and coordinates.</li></ul>
-	
-```
-	private static void bruteForce(int[][] field) {
-		int max = 0, bestX = 0, bestY = 0;
-
-		for (int i = 0; i < field.length; i++) {
-			for (int j = 0; j < field[0].length; j++) {
-				int size = 1;
-				while (determineTarget(field, new int[] { j, i }, size)) {
-					size++;
-				}
-				// bring size down 1
-				if (size - 1 > max) {
-					max = size - 1;
-					bestX = j;
-					bestY = i;
-				}
-			}
-		}
-	}
-```
+* 
 
 ##[Hybrid] ("https://en.wikipedia.org/wiki/Hybrid_algorithm">Hybrid)
 
@@ -85,6 +60,33 @@ End for
 		return largestSquare;
 	}
 ```
+
+##<a href="https://www.google.com/search?q=Brute+Force&oq=Brute+Force&aqs=chrome..69i57j0l5.1598j0j7&sourceid=chrome&ie=UTF-8#q=Brute+Force+definition+computer+science">Brute Force</a>
+
+
+<ul><li>Iterates over the entire field to check the largest size for each location and saving the size and coordinates.</li></ul>
+	
+```
+	private static void bruteForce(int[][] field) {
+		int max = 0, bestX = 0, bestY = 0;
+
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[0].length; j++) {
+				int size = 1;
+				while (determineTarget(field, new int[] { j, i }, size)) {
+					size++;
+				}
+				// bring size down 1
+				if (size - 1 > max) {
+					max = size - 1;
+					bestX = j;
+					bestY = i;
+				}
+			}
+		}
+	}
+```
+
 
 ##Example 
 <img name="ex" src="https://github.com/nhays89/FieldAndStones/blob/master/FieldAndStones/img/field_stones_ex1.png"/>
