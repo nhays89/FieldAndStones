@@ -4,7 +4,7 @@ Consider a square field of size n x n where some positions are occupied by stone
 ##Approaches to Solving Field and Stones
 * [Hybrid](#hybrid)
 * [Brute Force](#bruteforce)
-* [Dynamic Programming](--#dynamicprogramming)
+* [Dynamic Programming](#dp)
 
 ##[Hybrid](https://en.wikipedia.org/wiki/Hybrid_algorithm)
 
@@ -85,7 +85,7 @@ End for
 		}
 	}
 ```
-##Dyanmic Programming
+##<a name="dp" href="https://www.codechef.com/wiki/tutorial-dynamic-programming">Dynamic Programming</a>
 
 ##Example 
 <img name="ex" src="https://github.com/nhays89/FieldAndStones/blob/master/FieldAndStones/img/field_stones_ex1.png"/>
