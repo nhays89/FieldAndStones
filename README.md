@@ -3,7 +3,7 @@ Consider a square field of size n x n where some positions are occupied by stone
 
 ##Approaches to Solving Field and Stones
 * [Hybrid](#hybrid)
-* [Brute Force](Brute Force)
+* [Brute Force](-#brute force)
 * [Dynamic Programming](Dynamic Programming)
 * 
 
